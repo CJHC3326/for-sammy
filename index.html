@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message in a Bottle</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
+</head>
+<body class="h-screen w-screen relative overflow-hidden select-none text-slate-800">
+
+    <!-- Background Elements -->
+    <div id="stars-container" class="absolute inset-0 z-0"></div>
+    <div class="shooting-star" style="top: 20%; left: 80%; animation-delay: 2s;"></div>
+    <div class="shooting-star" style="top: 10%; left: 40%; animation-delay: 8s;"></div>
+
+    <!-- UI Controls -->
+    <div class="absolute top-4 right-4 z-50 flex gap-2">
+        <button id="music-btn" class="bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white p-2 rounded-full transition-all shadow-lg border border-white/30">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+            </svg>
+        </button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="relative z-20 h-full w-full flex flex-col items-center justify-end pb-32">
+        
+        <!-- Instruction Text -->
+        <div id="instruction" class="text-white/90 text-lg md:text-2xl font-light tracking-widest mb-8 animate-pulse text-center drop-shadow-md">
+            Click the bottle to read my message
+        </div>
+
+        <!-- The Bottle -->
+        <div id="bottle" class="bottle-container group">
+            <!-- SVG Bottle -->
+            <svg width="120" height="200" viewBox="0 0 100 180" class="drop-shadow-2xl bottle-glow transition-all duration-500">
+                <!-- Glass Body -->
+                <path d="M30,10 L70,10 L70,40 Q90,60 90,100 Q90,160 50,170 Q10,160 10,100 Q10,60 30,40 Z" 
+                      fill="rgba(255, 255, 255, 0.15)" 
+                      stroke="rgba(255, 255, 255, 0.6)" 
+                      stroke-width="2"/>
+                
+                <!-- Message inside (visible hint) -->
+                <rect x="25" y="80" width="50" height="60" rx="2" fill="#fff8e7" opacity="0.8" />
+                <line x1="35" y1="95" x2="65" y2="95" stroke="#ccc" stroke-width="2" />
+                <line x1="35" y1="105" x2="65" y2="105" stroke="#ccc" stroke-width="2" />
+                <line x1="35" y1="115" x2="55" y2="115" stroke="#ccc" stroke-width="2" />
+
+                <!-- Cork -->
+                <g id="cork" class="cork origin-bottom">
+                    <rect x="32" y="0" width="36" height="25" rx="3" fill="#8B4513" />
+                    <rect x="32" y="0" width="36" height="5" rx="1" fill="#A0522D" />
+                </g>
+                
+                <!-- Highlights -->
+                <path d="M25,50 Q20,80 25,120" stroke="rgba(255,255,255,0.4)" stroke-width="3" fill="none" stroke-linecap="round"/>
+            </svg>
+        </div>
+
+    </div>
+
+    <!-- The Unrolling Letter Overlay -->
+    <div id="letter" class="letter-scroll flex flex-col items-center text-center">
+        <div class="w-full h-full flex flex-col items-center justify-center p-4">
+            <h2 class="handwritten text-4xl md:text-5xl text-rose-500 mb-6 font-bold">FOR MY BABY</h2>
+            <div id="typewriter" class="handwritten text-xl md:text-2xl text-slate-700 leading-relaxed cursor"></div>
+        </div>
+        <button id="close-letter" class="mt-auto mb-4 text-slate-400 hover:text-rose-400 text-sm uppercase tracking-widest transition-colors">Close Message</button>
+    </div>
+
+    <!-- Ocean -->
+    <div class="ocean">
+        <div class="wave"></div>
+        <div class="wave"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
